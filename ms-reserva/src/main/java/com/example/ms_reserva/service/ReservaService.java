@@ -2,6 +2,7 @@ package com.example.ms_reserva.service;
 
 import com.example.ms_reserva.entity.Reserva;
 import com.example.ms_reserva.repository.ReservaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,10 +12,11 @@ import java.util.List;
 public class ReservaService {
 
     private final ReservaRepository repository;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
     public ReservaService(ReservaRepository repository) {
         this.repository = repository;
+        this.restTemplate = new RestTemplate();
     }
 
     public List<Reserva> listar() {
@@ -23,15 +25,13 @@ public class ReservaService {
 
     public Reserva guardar(Reserva reserva) {
 
-        String url =
-                "http://localhost:8082/habitaciones/"
-                        + reserva.getIdHabitacion();
+        String url = "http://localhost:8082/habitaciones/" + reserva.getIdHabitacion();
 
-        Object habitacion =
-                restTemplate.getForObject(url, Object.class);
+        ResponseEntity<Object> response =
+                restTemplate.getForEntity(url, Object.class);
 
-        if (habitacion == null) {
-            throw new RuntimeException("Habitacion no encontrada");
+        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null) {
+            throw new RuntimeException("Habitación no encontrada");
         }
 
         return repository.save(reserva);
