@@ -25,4 +25,17 @@ public class ReservaController {
     public Reserva guardar(@RequestBody Reserva reserva) {
         return service.guardar(reserva);
     }
+
+    @PutMapping("/{id}")
+    public Reserva actualizar(
+            @PathVariable Long id,
+            @RequestBody Reserva reserva) {
+
+        return service.actualizar(id, reserva);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
+    }
 }

@@ -21,10 +21,18 @@ public class HabitacionService {
 
     public Habitacion guardar(Habitacion habitacion) {
         return repository.save(habitacion);
-
     }
+
     public Habitacion buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
 
+    public Habitacion actualizar(Long id, Habitacion habitacion) {
+        habitacion.setId(id);
+        return repository.save(habitacion);
+    }
+
+    public void eliminar(Long id) {
+        repository.deleteById(id);
+    }
 }

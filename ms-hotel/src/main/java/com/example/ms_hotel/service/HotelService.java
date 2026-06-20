@@ -22,4 +22,13 @@ public class HotelService {
     public Hotel guardar(Hotel hotel) {
         return repository.save(hotel);
     }
+
+    public Hotel actualizar(Long id, Hotel hotel) {
+        hotel.setId(id);
+        return repository.save(hotel);
+    }
+
+    public void eliminar(Long id) {
+        repository.deleteById(id);
+    }
 }

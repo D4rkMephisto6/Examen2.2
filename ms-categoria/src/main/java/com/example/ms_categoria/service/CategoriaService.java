@@ -22,4 +22,13 @@ public class CategoriaService {
     public Categoria guardar(Categoria categoria) {
         return repository.save(categoria);
     }
+
+    public Categoria actualizar(Long id, Categoria categoria) {
+        categoria.setId(id);
+        return repository.save(categoria);
+    }
+
+    public void eliminar(Long id) {
+        repository.deleteById(id);
+    }
 }

@@ -12,8 +12,17 @@
         </processorPath>
         <module name="ms-categoria" />
         <module name="ms-hotel" />
-        <module name="ms-reserva" />
         <module name="ms-habitacion" />
+      </profile>
+      <profile name="Annotation profile for ms-reserva" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="ms-reserva" />
       </profile>
     </annotationProcessing>
   </component>

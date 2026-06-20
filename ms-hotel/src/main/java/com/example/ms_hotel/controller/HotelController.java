@@ -25,4 +25,17 @@ public class HotelController {
     public Hotel guardar(@RequestBody Hotel hotel) {
         return service.guardar(hotel);
     }
+
+    @PutMapping("/{id}")
+    public Hotel actualizar(
+            @PathVariable Long id,
+            @RequestBody Hotel hotel) {
+
+        return service.actualizar(id, hotel);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
+    }
 }

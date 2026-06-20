@@ -20,6 +20,7 @@ public class HabitacionController {
     public List<Habitacion> listar() {
         return service.listar();
     }
+
     @GetMapping("/{id}")
     public Habitacion buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
@@ -28,5 +29,18 @@ public class HabitacionController {
     @PostMapping
     public Habitacion guardar(@RequestBody Habitacion habitacion) {
         return service.guardar(habitacion);
+    }
+
+    @PutMapping("/{id}")
+    public Habitacion actualizar(
+            @PathVariable Long id,
+            @RequestBody Habitacion habitacion) {
+
+        return service.actualizar(id, habitacion);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
     }
 }

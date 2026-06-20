@@ -25,4 +25,17 @@ public class CategoriaController {
     public Categoria guardar(@RequestBody Categoria categoria) {
         return service.guardar(categoria);
     }
+
+    @PutMapping("/{id}")
+    public Categoria actualizar(
+            @PathVariable Long id,
+            @RequestBody Categoria categoria) {
+
+        return service.actualizar(id, categoria);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
+    }
 }

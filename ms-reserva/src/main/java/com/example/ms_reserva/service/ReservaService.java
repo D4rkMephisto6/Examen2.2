@@ -25,15 +25,31 @@ public class ReservaService {
 
     public Reserva guardar(Reserva reserva) {
 
-        String url = "http://localhost:8082/habitaciones/" + reserva.getIdHabitacion();
+        String url =
+                "http://localhost:8082/habitaciones/"
+                        + reserva.getIdHabitacion();
 
         ResponseEntity<Object> response =
                 restTemplate.getForEntity(url, Object.class);
 
-        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null) {
-            throw new RuntimeException("Habitación no encontrada");
+        if (!response.getStatusCode().is2xxSuccessful()
+                || response.getBody() == null) {
+
+            throw new RuntimeException(
+                    "Habitación no encontrada");
         }
 
         return repository.save(reserva);
+    }
+
+    public Reserva actualizar(Long id, Reserva reserva) {
+
+        reserva.setId(id);
+
+        return repository.save(reserva);
+    }
+
+    public void eliminar(Long id) {
+        repository.deleteById(id);
     }
 }
